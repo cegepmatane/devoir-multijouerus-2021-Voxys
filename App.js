@@ -34,14 +34,22 @@
     console.log("Je suis authentifié.");
     console.log("Les autres participants sont " + JSON.stringify(autresParticipants));
     this.formulaireAuthentification.querySelector("fieldset").disabled = true;
+    this.ajouterJoueur(this.pseudonymeJoueur);
     if(autresParticipants.length > 0){
       this.pseudonymeAutreJoueur = autresParticipants[0];
+      this.ajouterJoueur(autresParticipants[0]); 
     }
   }
 
   apprendreAuthentification(pseudonyme){
-    console.log("Nouvel ami " + pseudonyme);
+    console.log("Nouveau joueur: " + pseudonyme);
+    this.ajouterJoueur(pseudonyme);
     this.pseudonymeAutreJoueur = pseudonyme;
+  }
+
+  ajouterJoueur(pseudonyme){
+    console.log("Ajout joueur: " + pseudonyme);
+    this.listeJoueur[pseudonyme] = {pointDeVie : 10};
   }
 }
 
