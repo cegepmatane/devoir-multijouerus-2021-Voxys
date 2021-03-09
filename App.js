@@ -12,6 +12,7 @@
     this.formulaireAuthentification.addEventListener("submit", (evenementsubmit) => this.soumettreAuthentificationJoueur(evenementsubmit))
     this.champPseudonyme = document.getElementById("champ-pseudonyme");
     this.boutonAuthentification = document.getElementById("bouton-authentification");
+    this.pseudonymeAdversaire = document.getElementById("champ-pseudonyme-adversaire");
   }
 
   soumettreAuthentificationJoueur(evenementsubmit){
@@ -28,6 +29,7 @@
     //Le serveur nous confirme que nous sommes bien connecté, nous pouvons faire une demande d'authentification
     this.pseudonymeJoueur = this.champPseudonyme.value;
     this.multiNode.demanderAuthentification(this.pseudonymeJoueur);
+    this.afficherPartie();
   }
 
   confirmerAuthentification(autresParticipants){
@@ -38,6 +40,7 @@
     if(autresParticipants.length > 0){
       this.pseudonymeAutreJoueur = autresParticipants[0];
       this.ajouterJoueur(autresParticipants[0]); 
+      this.afficherPartie();
     }
   }
 
@@ -45,11 +48,17 @@
     console.log("Nouveau joueur: " + pseudonyme);
     this.ajouterJoueur(pseudonyme);
     this.pseudonymeAutreJoueur = pseudonyme;
+    this.afficherPartie();
   }
 
   ajouterJoueur(pseudonyme){
     console.log("Ajout joueur: " + pseudonyme);
     this.listeJoueur[pseudonyme] = {pointDeVie : 10};
+  }
+
+  afficherPartie(){
+    console.log("afficherpartie " + this.pseudonymeAutreJoueur);
+    this.pseudonymeAdversaire.innerHTML = this.pseudonymeAutreJoueur;
   }
 }
 
