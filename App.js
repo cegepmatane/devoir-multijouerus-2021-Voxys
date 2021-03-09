@@ -10,9 +10,16 @@
     this.pseudonymeAutreJoueur = "";
     this.formulaireAuthentification = document.getElementById("formulaire-authentification");
     this.formulaireAuthentification.addEventListener("submit", (evenementsubmit) => this.soumettreAuthentificationJoueur(evenementsubmit))
-    this.champPseudonyme = document.getElementById("champ-pseudonyme");
     this.boutonAuthentification = document.getElementById("bouton-authentification");
-    this.pseudonymeAdversaire = document.getElementById("champ-pseudonyme-adversaire");
+    this.champPseudonyme = document.getElementById("champ-pseudonyme");
+    this.champPseudonymeAdversaire = document.getElementById("champ-pseudonyme-adversaire");
+    this.fieldDebutPartie = document.getElementById("field-debut-partie");
+    this.fieldJoueur = document.getElementById("field-joueur");
+    this.fieldAdversaire = document.getElementById("field-adversaire");
+
+    this.fieldJoueur.style.display = "none";
+    this.fieldAdversaire.style.display = "none";
+
   }
 
   soumettreAuthentificationJoueur(evenementsubmit){
@@ -29,7 +36,6 @@
     //Le serveur nous confirme que nous sommes bien connecté, nous pouvons faire une demande d'authentification
     this.pseudonymeJoueur = this.champPseudonyme.value;
     this.multiNode.demanderAuthentification(this.pseudonymeJoueur);
-    this.afficherPartie();
   }
 
   confirmerAuthentification(autresParticipants){
@@ -58,9 +64,12 @@
 
   afficherPartie(){
     console.log("afficherpartie " + this.pseudonymeAutreJoueur);
-    this.pseudonymeAdversaire.innerHTML = this.pseudonymeAutreJoueur;
+
+    this.fieldDebutPartie.style.display = "none";
+    this.fieldJoueur.style.display = "block";
+    this.fieldAdversaire.style.display = "block";
+    this.champPseudonymeAdversaire.innerHTML = this.pseudonymeAutreJoueur;
   }
 }
-
 
 new App();
