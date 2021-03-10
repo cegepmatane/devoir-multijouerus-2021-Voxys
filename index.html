@@ -1,8 +1,8 @@
 ﻿<!doctype html>
 <html lang="fr">
 <head>
-	<meta charset="utf-8">
-	<title>Attaque - Ajout joueur</title>
+    <meta charset="utf-8">
+    <title>Attaque - Ajout joueur</title>
     <script src="lib/MultiNode.js"></script>
     <script defer src="App.js"></script>
     <link rel="stylesheet" href="style.css">
@@ -16,12 +16,17 @@
         </fieldset>
         <fieldset id="field-joueur">
             <legend id="champ-pseudonyme">Vous</legend>
-            <input type="text" id="champ-point-de-vie-autre-joueur" value=""/>
+            <input type="text" id="compteur-joueur"/>
+        </fieldset>
+        <fieldset id="field-lancer-des">
+            <input type="submit" value="Lancer dés" id="bouton-lancer-des"/>
+            <input type="text" id="resultat-lancer-des"/>
         </fieldset>
         <fieldset id="field-adversaire">
             <legend id="champ-pseudonyme-adversaire"></legend>
-            <input type="text" id="champ-point-de-vie-autre-joueur" value=""/>
+            <input type="text" id="compteur-adversaire"/>
         </fieldset>
     </form>
 </body>
+
 </html>
