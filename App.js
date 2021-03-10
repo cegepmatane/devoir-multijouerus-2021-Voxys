@@ -24,6 +24,12 @@
     this.champCompteurJoueur = document.getElementById("compteur-joueur");
     this.champCompteurAdversaire = document.getElementById("compteur-adversaire");
 
+    this.imageJoueurDe1 = document.getElementById("joueur-de1");
+    this.imageJoueurDe2 = document.getElementById("joueur-de2");
+    this.imageAdversaireDe1 = document.getElementById("adversaire-de1");
+    this.imageAdversaireDe2 = document.getElementById("adversaire-de2");
+
+
     this.compteurJoueur = 0;
     this.compteurAdversaire = 0;
 
@@ -81,19 +87,21 @@
 
   lancerDes(){
     console.log("_________ L A N C E R _________");
+
     console.log("Lanceur des dés: " + this.pseudonymeJoueur);
 
     this.de1 = Math.floor(Math.random() * 6 + 1);
     console.log("Valeur premier dé: " + this.de1);
+    this.imageJoueurDe1.classList.add("de" + this.de1);
 
     this.de2 = Math.floor(Math.random() * 6 + 1);
     console.log("Valeur deuxieme dé: " + this.de2);
+    this.imageJoueurDe2.classList.add("de" + this.de2);
     
     this.resultat = this.de1 + this.de2;
     console.log("Resultat: " + this.resultat);
 
     this.resultatLancerDes.value = this.resultat;
-    console.log("________________________________");
 
     this.boutonLancerDes.disabled = true;
     this.compteurJoueur += this.resultat;
@@ -118,6 +126,7 @@
     if(message.pseudonyme == this.pseudonymeAutreJoueur){
       this.compteurAdversaire += message.valeur;
       this.champCompteurAdversaire.value = this.compteurAdversaire;
+      this.boutonLancerDes.disabled = false;
     } 
   }
 

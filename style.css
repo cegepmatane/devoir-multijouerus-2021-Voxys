@@ -1,3 +1,59 @@
-#champ-pseudonyme-adversaire{
-    /* display:none; */
+main{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    display:flex;
+    border:1px solid red;
+}
+
+.cadre{
+    height:5em;
+    width:50%;
+    border:1px solid red;
+    margin:5px;
+}
+
+.de1{
+    background: url('https://upload.wikimedia.org/wikipedia/commons/2/2c/Alea_1.png') no-repeat;
+    background-size: 100%;
+}
+
+.de2{
+    background: url('https://upload.wikimedia.org/wikipedia/commons/b/b8/Alea_2.png') no-repeat;
+    background-size: 100%;
+}
+
+.de3{
+    background: url('https://upload.wikimedia.org/wikipedia/commons/2/2f/Alea_3.png') no-repeat;
+    background-size: 100%;
+}
+
+.de4{
+    background: url('https://upload.wikimedia.org/wikipedia/commons/8/8d/Alea_4.png') no-repeat;
+    background-size: 100%;
+}
+
+.de5{
+    background: url('https://upload.wikimedia.org/wikipedia/commons/5/55/Alea_5.png') no-repeat;
+    background-size: 100%;
+}
+
+.de6{
+    background: url('https://upload.wikimedia.org/wikipedia/commons/f/f4/Alea_6.png') no-repeat;
+    background-size: 100%;
+}
+
+.cadre-container{
+    display:flex;
+    padding:5px;
+}
+
+#field-lancer-des{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

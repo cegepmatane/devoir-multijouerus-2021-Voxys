@@ -8,25 +8,35 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form id="formulaire-authentification">
-        <fieldset id="field-debut-partie">
-            <lable>Pseudonyme</lable>
-            <input type="text" id="champ-pseudonyme"/>
-            <input type="submit" value="Authentification" id="bouton-authentification"/>
-        </fieldset>
-        <fieldset id="field-joueur">
-            <legend id="champ-pseudonyme">Vous</legend>
-            <input type="text" id="compteur-joueur"/>
-        </fieldset>
-        <fieldset id="field-lancer-des">
-            <input type="submit" value="Lancer dés" id="bouton-lancer-des"/>
-            <input type="text" id="resultat-lancer-des"/>
-        </fieldset>
-        <fieldset id="field-adversaire">
-            <legend id="champ-pseudonyme-adversaire"></legend>
-            <input type="text" id="compteur-adversaire"/>
-        </fieldset>
-    </form>
+    <main>
+        <form id="formulaire-authentification">
+            <fieldset id="field-debut-partie">
+                <lable>Pseudonyme</lable>
+                <input type="text" id="champ-pseudonyme"/>
+                <input type="submit" value="Authentification" id="bouton-authentification"/>
+            </fieldset>
+            <fieldset id="field-joueur">
+                <div class="cadre-container">
+                    <div class="cadre" id="joueur-de1"></div>
+                    <div class="cadre" id="joueur-de2"></div>
+                </div>  
+                <legend id="champ-pseudonyme">Vous</legend>
+                <input type="text" id="compteur-joueur"/>
+            </fieldset>
+            <fieldset id="field-lancer-des">
+                <input type="submit" value="Lancer dés" id="bouton-lancer-des"/>
+                <input type="text" id="resultat-lancer-des"/>
+            </fieldset>
+            <fieldset id="field-adversaire">
+                <div class="cadre-container">
+                    <div class="cadre" id="adversaire-de1"></div>
+                    <div class="cadre" id="adversaire-de2"></div>
+                </div>                  
+                <legend id="champ-pseudonyme-adversaire"></legend>
+                <input type="text" id="compteur-adversaire"/>
+            </fieldset>
+        </form>
+    </main>
 </body>
 
 </html>
