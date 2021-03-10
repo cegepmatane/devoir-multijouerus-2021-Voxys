@@ -14,6 +14,7 @@
     this.formulaireAuthentification.addEventListener("submit", (evenementsubmit) => this.soumettreAuthentificationJoueur(evenementsubmit))
     this.boutonAuthentification = document.getElementById("bouton-authentification");
     this.champPseudonyme = document.getElementById("champ-pseudonyme");
+    this.champPseudonymeJoueur = document.getElementById("champ-pseudonyme-joueur");
     this.champPseudonymeAdversaire = document.getElementById("champ-pseudonyme-adversaire");
     this.fieldDebutPartie = document.getElementById("field-debut-partie");
     this.fieldJoueur = document.getElementById("field-joueur");
@@ -32,6 +33,9 @@
 
     this.compteurJoueur = 0;
     this.compteurAdversaire = 0;
+
+    this.dernierDe1Adversaire = 0;
+    this.dernierDe2Adversaire = 0;
 
     this.fieldJoueur.style.display = "none";
     this.fieldAdversaire.style.display = "none";
@@ -83,12 +87,19 @@
     this.fieldLancerDes.style.display = "block";
     this.boutonLancerDes.style.display = "block";
     this.champPseudonymeAdversaire.innerHTML = this.pseudonymeAutreJoueur;
+    this.champPseudonymeJoueur.innerHTML = "Vous " + '(' + this.pseudonymeJoueur + ')';
   }
 
   lancerDes(){
     console.log("_________ L A N C E R _________");
 
     console.log("Lanceur des dés: " + this.pseudonymeJoueur);
+
+    //Suppression image du lancer de dé précédent
+    if(this.de1 != null && this.de2 != null){
+      this.imageJoueurDe1.classList.remove("de" + this.de1);
+      this.imageJoueurDe2.classList.remove("de" + this.de2);
+    }
 
     this.de1 = Math.floor(Math.random() * 6 + 1);
     console.log("Valeur premier dé: " + this.de1);
@@ -113,7 +124,9 @@
 
       let message = {
         pseudonyme : this.pseudonymeJoueur,
-        valeur : this.resultat
+        valeur : this.resultat,
+        de1 : this.de1,
+        de2 : this.de2
       };
 
       this.multiNode.posterVariableTextuelle(App.MESSAGE.VALEUR, JSON.stringify(message));
@@ -127,6 +140,17 @@
       this.compteurAdversaire += message.valeur;
       this.champCompteurAdversaire.value = this.compteurAdversaire;
       this.boutonLancerDes.disabled = false;
+
+      if(this.dernierDe1Adversaire != 0 && this.dernierDe2Adversaire != 0){
+        this.imageAdversaireDe1.classList.remove("de" + this.dernierDe1Adversaire);
+        this.imageAdversaireDe2.classList.remove("de" + this.dernierDe2Adversaire);
+      }
+
+      this.dernierDe1Adversaire = message.de1;
+      this.dernierDe2Adversaire = message.de2;
+
+      this.imageAdversaireDe1.classList.add("de" + message.de1);
+      this.imageAdversaireDe2.classList.add("de" + message.de2);
     } 
   }
 
