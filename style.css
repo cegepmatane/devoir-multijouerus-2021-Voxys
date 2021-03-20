@@ -1,3 +1,7 @@
+body{
+    background-color: #2a2a2a;
+}
+
 main{
     display:flex;
     justify-content: center;
@@ -6,14 +10,43 @@ main{
 
 form{
     display:flex;
-    border:1px solid red;
+    justify-content: center;
+    width:100%;
+    /* border: 1px solid red; */
+}
+
+header{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:15%;
+    margin-bottom:5%;
+    font-family: "Arial Black", sans-serif;
+    font-size: 4.5em;
+    letter-spacing: -1px;
+    color: #9c27b0;
+    text-shadow:4px 4px #62196f;
+}
+
+fieldset{
+    border-color: #9c27b0;
+    border-style: solid;
+    box-shadow: 4px 4px #62196f;
+    margin:1%;
+}
+
+legend{
+    font-family: "Arial Black", sans-serif;
+    font-size: 1em;
+    letter-spacing: -1px;
+    color: #9c27b0;
+    text-shadow:2px 2px #62196f;    
 }
 
 .cadre{
     height:5em;
     width:50%;
-    border:1px solid red;
-    margin:5px;
+    margin:10px;
 }
 
 .de1{
@@ -51,10 +84,25 @@ form{
     padding:5px;
 }
 
-#field-lancer-des{
-    border: 1px solid red;
+#field-debut-partie{
     display:flex;
     flex-direction: column;
+}
+
+#field-debut-partie > input{
+    margin:2%;
+    padding: 0.4em 0.9em;
+}
+
+#field-lancer-des{
+    display:flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
     justify-content: center;
+}
+
+#field-lancer-des > input{
+    display:flex;
     align-items: center;
+    justify-content: center;
 }

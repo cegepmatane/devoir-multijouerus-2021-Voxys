@@ -5,11 +5,9 @@
     this.multiNode.confirmerAuthentification = (autresParticipants) => this.confirmerAuthentification(autresParticipants);
     this.multiNode.apprendreAuthentification = (pseudonyme) => this.apprendreAuthentification(pseudonyme);
     this.multiNode.recevoirVariable = (variable) => this.recevoirVariable(variable);
-
     this.listeJoueur = {};
     this.pseudonymeJoueur = "";
     this.pseudonymeAutreJoueur = "";
-
     this.formulaireAuthentification = document.getElementById("formulaire-authentification");
     this.formulaireAuthentification.addEventListener("submit", (evenementsubmit) => this.soumettreAuthentificationJoueur(evenementsubmit))
     this.boutonAuthentification = document.getElementById("bouton-authentification");
@@ -24,25 +22,19 @@
     this.resultatLancerDes = document.getElementById("resultat-lancer-des");
     this.champCompteurJoueur = document.getElementById("compteur-joueur");
     this.champCompteurAdversaire = document.getElementById("compteur-adversaire");
-
     this.imageJoueurDe1 = document.getElementById("joueur-de1");
     this.imageJoueurDe2 = document.getElementById("joueur-de2");
     this.imageAdversaireDe1 = document.getElementById("adversaire-de1");
     this.imageAdversaireDe2 = document.getElementById("adversaire-de2");
-
-
     this.compteurJoueur = 0;
     this.compteurAdversaire = 0;
-
     this.dernierDe1Adversaire = 0;
     this.dernierDe2Adversaire = 0;
-
     this.fieldJoueur.style.display = "none";
     this.fieldAdversaire.style.display = "none";
     this.fieldLancerDes.style.display = "none";
     this.boutonLancerDes.style.display = "none";
     this.boutonLancerDes.addEventListener("click", (evenementdes) => this.soumettreLancer());
-
     this.compteurTour = 0;
   }
 
@@ -65,7 +57,7 @@
   confirmerAuthentification(autresParticipants){
     console.log("Je suis authentifié.");
     console.log("Les autres participants sont " + JSON.stringify(autresParticipants));
-    this.formulaireAuthentification.querySelector("fieldset").disabled = true;
+    // this.formulaireAuthentification.querySelector("fieldset").disabled = true;
     if(autresParticipants.length > 0){
       this.pseudonymeAutreJoueur = autresParticipants[0];
       this.afficherPartie();
@@ -114,9 +106,15 @@
 
     this.resultatLancerDes.value = this.resultat;
 
-    this.boutonLancerDes.disabled = true;
     this.compteurJoueur += this.resultat;
     this.champCompteurJoueur.value = this.compteurJoueur;
+
+    if(this.de1 == this.de2){
+      this.boutonLancerDes.disabled = false;
+      console.log("DOUBLE " + this.pseudonymeJoueur + " peut rejouer");
+    }else{
+      this.boutonLancerDes.disabled = true;
+    }
   }
 
   soumettreLancer(){
@@ -139,7 +137,6 @@
     if(message.pseudonyme == this.pseudonymeAutreJoueur){
       this.compteurAdversaire += message.valeur;
       this.champCompteurAdversaire.value = this.compteurAdversaire;
-      this.boutonLancerDes.disabled = false;
 
       if(this.dernierDe1Adversaire != 0 && this.dernierDe2Adversaire != 0){
         this.imageAdversaireDe1.classList.remove("de" + this.dernierDe1Adversaire);
@@ -151,14 +148,12 @@
 
       this.imageAdversaireDe1.classList.add("de" + message.de1);
       this.imageAdversaireDe2.classList.add("de" + message.de2);
-    } 
-  }
 
-  changerPointdeVieJoueur(nouveauPointDeVie){
-    console.log("changerPointdeVieJoueur()=>valeur" + nouveauPointDeVie);
-    this.listeJoueur[this.pseudonymeJoueur].pointDeVie = nouveauPointDeVie;
-    this.champPointDeVie.value = nouveauPointDeVie;
-    this.validerFinPartie();
+      if(message.de1 == message.de2)
+        this.boutonLancerDes.disabled = true;
+      else
+        this.boutonLancerDes.disabled = false;
+    } 
   }
 }
 
