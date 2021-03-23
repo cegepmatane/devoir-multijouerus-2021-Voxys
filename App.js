@@ -242,7 +242,7 @@
         this.joueurDebutePartie = this.pseudonymeJoueur;
         this.imageJoueurDeSelection.classList.add("de" + message.deSelection);
         this.partieDemarrer = true;
-        alert("commence la partie: " + this.joueurDebutePartie); //todo: trouver comment ralentir le alert pour permettre affichage image dé
+        alert(this.joueurDebutePartie + " commence la partie !"); //todo: trouver comment ralentir le alert pour permettre affichage image dé
         this.afficherPartie();
       }
       else if(this.deSelectionJoueur == this.deSelectionAdversaire){
@@ -258,7 +258,7 @@
         this.joueurDebutePartie = this.pseudonymeAutreJoueur;
         this.imageAdversaireDeSelection.classList.add("de" + message.deSelection); 
         this.partieDemarrer = true;
-        alert("commence la partie: " + this.joueurDebutePartie);
+        alert(this.joueurDebutePartie + " commence la partie !");
         this.afficherPartie();
       }
     }

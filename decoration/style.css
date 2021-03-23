@@ -35,6 +35,10 @@ fieldset{
     margin:1%;
 }
 
+fieldset > input{
+    text-align: center;
+}
+
 legend{
     font-family: "Arial Black", sans-serif;
     font-size: 1em;
