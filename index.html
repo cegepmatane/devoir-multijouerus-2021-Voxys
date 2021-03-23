@@ -26,11 +26,14 @@
                 <input type="text" id="compteur-joueur"/>
             </fieldset>
             <fieldset id="field-selection-premier-joueur">
-                <input type="submit" value="Lancer dés" id="bouton-lancer-des-selection"/>
-                <input type="text" id="resultat-lancer-des-selection"/>
+                <div class="cadre-container-selection">
+                    <fieldset class="cadre joueur-de-selection" id="joueur-de-selection"><legend id="champ-pseudonyme-joueur-selection"></legend></fieldset>
+                    <fieldset class="cadre adversaire-de-selection" id="adversaire-de-selection"><legend id="champ-pseudonyme-adversaire-selection"></legend></fieldset>
+                </div>
+                <input type="button" value="Lancer dés" id="bouton-lancer-des-selection"/>
             </fieldset>
             <fieldset id="field-lancer-des">
-                <input type="submit" value="Lancer dés" id="bouton-lancer-des"/>
+                <input type="button" value="Lancer dés" id="bouton-lancer-des"/>
                 <input type="text" id="resultat-lancer-des"/>
             </fieldset>
             <fieldset id="field-adversaire">

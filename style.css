@@ -43,8 +43,30 @@ legend{
     text-shadow:2px 2px #62196f;    
 }
 
+.cadre-container{
+    display:flex;
+    padding:5px;
+    width:10em;
+    text-align: center;
+    overflow: scroll;
+}
+
+.cadre-container-selection{
+    display:flex;
+    padding:5px;
+    width:15em;
+    text-align: center;
+    overflow: scroll;
+}
+
+.cadre-container-selection > fieldset{
+    min-width: 0; 
+    width: 100%; 
+}
+
 .cadre{
-    height:5em;
+    display:flex;
+    height:6em;
     width:50%;
     margin:10px;
 }
@@ -79,11 +101,6 @@ legend{
     background-size: 100%;
 }
 
-.cadre-container{
-    display:flex;
-    padding:5px;
-}
-
 #field-debut-partie{
     display:flex;
     flex-direction: column;
@@ -99,10 +116,16 @@ legend{
     flex-direction: column;
     /* border: 1px solid red; */
     justify-content: center;
+    align-items: center;
 }
 
 #field-lancer-des > input{
     display:flex;
+    width:100%;
     align-items: center;
     justify-content: center;
+}
+
+#field-selection-premier-joueur > input{
+    width:100%;
 }

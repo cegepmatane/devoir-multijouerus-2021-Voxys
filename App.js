@@ -13,7 +13,9 @@
     this.boutonAuthentification = document.getElementById("bouton-authentification");
     this.champPseudonyme = document.getElementById("champ-pseudonyme");
     this.champPseudonymeJoueur = document.getElementById("champ-pseudonyme-joueur");
+    this.champPseudonymeJoueurSelection = document.getElementById("champ-pseudonyme-joueur-selection");
     this.champPseudonymeAdversaire = document.getElementById("champ-pseudonyme-adversaire");
+    this.champPseudonymeAdversaireSelection = document.getElementById("champ-pseudonyme-adversaire-selection");
     this.fieldSelectionPremierJoueur = document.getElementById("field-selection-premier-joueur");
     this.fieldDebutPartie = document.getElementById("field-debut-partie");
     this.fieldJoueur = document.getElementById("field-joueur");
@@ -21,12 +23,13 @@
     this.fieldLancerDes = document.getElementById("field-lancer-des");
     this.boutonLancerDesSelection = document.getElementById("bouton-lancer-des-selection");
     this.boutonLancerDes = document.getElementById("bouton-lancer-des");
-    this.champResultatLancerDesSelection = document.getElementById("resultat-lancer-des-selection");
     this.champResultatLancerDes = document.getElementById("resultat-lancer-des");
     this.champCompteurJoueur = document.getElementById("compteur-joueur");
     this.champCompteurAdversaire = document.getElementById("compteur-adversaire");
+    this.imageJoueurDeSelection = document.getElementById("joueur-de-selection");
     this.imageJoueurDe1 = document.getElementById("joueur-de1");
     this.imageJoueurDe2 = document.getElementById("joueur-de2");
+    this.imageAdversaireDeSelection = document.getElementById("adversaire-de-selection");
     this.imageAdversaireDe1 = document.getElementById("adversaire-de1");
     this.imageAdversaireDe2 = document.getElementById("adversaire-de2");
     this.joueurDebutePartie = "";
@@ -47,6 +50,7 @@
     this.boutonLancerDesSelection.style.display = "none";
     this.boutonLancerDesSelection.addEventListener("click", (evenementdes) => this.lancerDes());
     this.boutonLancerDes.addEventListener("click", (evenementdes) => this.lancerDes());
+    //les id me servent à eviter tout bug qui produirait l'envoie d'une requête doublon
     this.id = 0;
     this.idPrecedentAdversaire = 0;
   }
@@ -89,6 +93,8 @@
     this.fieldDebutPartie.style.display = "none";
     this.fieldSelectionPremierJoueur.style.display = "block";
     this.boutonLancerDesSelection.style.display = "block";
+    this.champPseudonymeJoueurSelection.innerHTML = "Vous";
+    this.champPseudonymeAdversaireSelection.innerHTML = this.pseudonymeAutreJoueur;
   }
 
   afficherPartie(){
@@ -99,6 +105,16 @@
     this.boutonLancerDes.style.display = "block";
     this.champPseudonymeAdversaire.innerHTML = this.pseudonymeAutreJoueur;
     this.champPseudonymeJoueur.innerHTML = "Vous " + '(' + this.pseudonymeJoueur + ')';
+    if(this.joueurDebutePartie != this.pseudonymeJoueur){
+      this.boutonLancerDes.disabled = true;
+      this.fieldJoueur.style.borderColor = "#9c27b0";
+      this.fieldAdversaire.style.borderColor = "red";
+    }
+    else if(this.joueurDebutePartie == this.pseudonymeJoueur){
+      this.boutonLancerDes.disabled = false;
+      this.fieldJoueur.style.borderColor = "red";
+      this.fieldAdversaire.style.borderColor = "#9c27b0";
+    }
   }
 
   lancerDes(){
@@ -134,9 +150,7 @@
         deSelection : this.deSelection
       };
     } else {
-
       this.id+=1;
-      
       var message = {
         pseudonyme : this.pseudonymeJoueur,
         valeur : this.resultat,
@@ -146,9 +160,6 @@
       };
         
     this.gestionImageDes(message);
-
-    
-
     this.enregistrerDernierLancer();
     }
    
@@ -182,7 +193,29 @@
   }
 
   gestionDouble(message){
-    
+    if(message.pseudonyme == this.pseudonymeJoueur){
+        if(message.de1 == message.de2){
+          this.boutonLancerDes.disabled = false;
+          this.fieldJoueur.style.borderColor = "red";
+          this.fieldAdversaire.style.borderColor = "#9c27b0";
+        } else {
+          this.boutonLancerDes.disabled = true;
+          this.fieldJoueur.style.borderColor = "#9c27b0";
+          this.fieldAdversaire.style.borderColor = "red";
+        }
+    }
+    if(message.pseudonyme == this.pseudonymeAutreJoueur){
+      if(message.de1 == message.de2){
+        this.boutonLancerDes.disabled = true;
+        this.fieldAdversaire.style.borderColor = "red";
+        this.fieldJoueur.style.borderColor = "#9c27b0";
+      }
+      else{
+        this.boutonLancerDes.disabled = false;
+        this.fieldAdversaire.style.borderColor = "#9c27b0";
+        this.fieldJoueur.style.borderColor = "red";
+      }
+    }
   }
 
   gestionCompteurAdversaire(message){
@@ -197,26 +230,33 @@
     if(message.pseudonyme == this.pseudonymeJoueur){
       this.deSelectionJoueur = message.deSelection;
       this.boutonLancerDesSelection.disabled = true;
+      this.imageJoueurDeSelection.classList.add("de" + message.deSelection);
     }
     else if(message.pseudonyme == this.pseudonymeAutreJoueur){
       this.deSelectionAdversaire = message.deSelection;
+      this.imageAdversaireDeSelection.classList.add("de" + message.deSelection);
     }
     
     if(this.deSelectionAdversaire != 0 && this.deSelectionJoueur != 0){
       if(this.deSelectionJoueur > this.deSelectionAdversaire){
         this.joueurDebutePartie = this.pseudonymeJoueur;
+        this.imageJoueurDeSelection.classList.add("de" + message.deSelection);
         this.partieDemarrer = true;
-        alert("commence la partie: " + this.joueurDebutePartie);
+        alert("commence la partie: " + this.joueurDebutePartie); //todo: trouver comment ralentir le alert pour permettre affichage image dé
         this.afficherPartie();
       }
       else if(this.deSelectionJoueur == this.deSelectionAdversaire){
+        alert("Égalité !");
+        this.imageJoueurDeSelection.classList.remove("de" + this.deSelectionJoueur);
+        this.imageAdversaireDeSelection.classList.remove("de" + this.deSelectionAdversaire);
         this.deSelectionJoueur = 0;
         this.deSelectionAdversaire = 0;
         this.deSelection = 0;
-        this.boutonLancerDes.disabled = false;
+        this.boutonLancerDesSelection.disabled = false;
       }
       else if(this.deSelectionJoueur < this.deSelectionAdversaire){
         this.joueurDebutePartie = this.pseudonymeAutreJoueur;
+        this.imageAdversaireDeSelection.classList.add("de" + message.deSelection); 
         this.partieDemarrer = true;
         alert("commence la partie: " + this.joueurDebutePartie);
         this.afficherPartie();
