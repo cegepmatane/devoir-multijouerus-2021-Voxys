@@ -52,7 +52,7 @@ legend{
     padding:5px;
     width:10em;
     text-align: center;
-    overflow: scroll;
+    overflow: hidden;
 }
 
 .cadre-container-selection{
@@ -60,7 +60,7 @@ legend{
     padding:5px;
     width:15em;
     text-align: center;
-    overflow: scroll;
+    overflow: hidden;
 }
 
 .cadre-container-selection > fieldset{
