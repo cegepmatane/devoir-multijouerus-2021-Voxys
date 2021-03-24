@@ -198,6 +198,7 @@
           this.boutonLancerDes.disabled = false;
           this.fieldJoueur.style.borderColor = "red";
           this.fieldAdversaire.style.borderColor = "#9c27b0";
+          alert("Double! Tu peux rejouer.");
         } else {
           this.boutonLancerDes.disabled = true;
           this.fieldJoueur.style.borderColor = "#9c27b0";
