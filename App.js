@@ -32,6 +32,7 @@
     this.imageAdversaireDeSelection = document.getElementById("adversaire-de-selection");
     this.imageAdversaireDe1 = document.getElementById("adversaire-de1");
     this.imageAdversaireDe2 = document.getElementById("adversaire-de2");
+    this.champCompteurTour = document.getElementById("champ-compteur-tours");
     this.joueurDebutePartie = "";
     this.partieDemarrer = false;
     this.deSelectionJoueur = 0;
@@ -42,6 +43,7 @@
     this.dernierDe2 = 0;
     this.dernierDe1Adversaire = 0;
     this.dernierDe2Adversaire = 0;
+    this.compteurTour = 1;
     this.fieldSelectionPremierJoueur.style.display = "none";
     this.fieldJoueur.style.display = "none";
     this.fieldAdversaire.style.display = "none";
@@ -109,11 +111,13 @@
       this.boutonLancerDes.disabled = true;
       this.fieldJoueur.style.borderColor = "#9c27b0";
       this.fieldAdversaire.style.borderColor = "red";
+      this.compteurTour = 0;
     }
     else if(this.joueurDebutePartie == this.pseudonymeJoueur){
       this.boutonLancerDes.disabled = false;
       this.fieldJoueur.style.borderColor = "red";
       this.fieldAdversaire.style.borderColor = "#9c27b0";
+      this.compteurTour = 1;
     }
   }
 
@@ -215,6 +219,10 @@
         this.boutonLancerDes.disabled = false;
         this.fieldAdversaire.style.borderColor = "#9c27b0";
         this.fieldJoueur.style.borderColor = "red";
+
+        //Quand le tour reviens au joueur, affiche le compteur de tour de celui-ci
+        this.compteurTour += 1;
+        this.champCompteurTour.innerHTML = "Tour: " + this.compteurTour;
       }
     }
   }
@@ -237,8 +245,7 @@
       this.deSelectionAdversaire = message.deSelection;
       this.imageAdversaireDeSelection.classList.add("de" + message.deSelection);
     }
-    
-    if(this.deSelectionAdversaire != 0 && this.deSelectionJoueur != 0){
+  if(this.deSelectionAdversaire != 0 && this.deSelectionJoueur != 0){
       if(this.deSelectionJoueur > this.deSelectionAdversaire){
         this.joueurDebutePartie = this.pseudonymeJoueur;
         this.imageJoueurDeSelection.classList.add("de" + message.deSelection);
