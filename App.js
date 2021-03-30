@@ -188,7 +188,7 @@
     this.gestionDouble(message);
     this.gestionFinPartie();
   } 
-
+  //Permet de définir si un dees joueurs atteints les 60 points requis pour la victoire 
   gestionFinPartie(){
     if(this.compteurJoueur > 60){
       alert("Bravo " + this.pseudonymeJoueur + ", tu as gagné !");
@@ -199,7 +199,7 @@
       window.location.reload();
     }
   }
-
+//Vérifie si le message reçu contient un double de dé, gére l'activation et la désactivation du bouton ainsi que l'indicateur de joueur actif (zone rouge)
   gestionDouble(message){
     if(message.pseudonyme == this.pseudonymeJoueur){
         if(message.de1 == message.de2){
@@ -230,7 +230,7 @@
       }
     }
   }
-
+  //Affiche le bon total de points dans la zone adverse 
   gestionCompteurAdversaire(message){
     if(message.pseudonyme == this.pseudonymeAutreJoueur && message.id != this.idPrecedentAdversaire){
       this.compteurAdversaire += message.valeur;
@@ -238,7 +238,7 @@
       this.idPrecedentAdversaire = message.id;
     }
   }
-
+  //Gére le premier lancer de dés et défini le joueur qui début la partie
   gestionSelectionDebutPartie(message){
     if(message.pseudonyme == this.pseudonymeJoueur){
       this.deSelectionJoueur = message.deSelection;
@@ -275,7 +275,7 @@
       }
     }
   }
-
+  //Affiche correctement la représentation visuel du dé de séléction
   gestionImageDes(message){
     if(this.dernierDe1 == 0 && this.dernierDe2 == 0){
         this.imageJoueurDe1.classList.remove("de");
@@ -290,7 +290,7 @@
     }  
     // this.boutonLancerDes.disabled = "true";
   }
-
+  //Affiche correctement la représentation visuel des dés dans les champs prévues 
   gestionImageDesAdversaire(message){
     if(this.pseudonymeAutreJoueur == message.pseudonyme){
       if(this.dernierDe1Adversaire == 0 && this.dernierDe2Adversaire == 0){
