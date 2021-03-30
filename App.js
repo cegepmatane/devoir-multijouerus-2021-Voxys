@@ -150,12 +150,13 @@
   }
 
   soumettreLancer(){
-
+    // Si il sagit d'un lancer de départ pour choisir le premier joueur, créer un message contenant le dé unique
     if(!this.partieDemarrer){
       var message = {
         pseudonyme : this.pseudonymeJoueur,
         deSelection : this.deSelection
       };
+      //Si il sagitd<un lancer normal au cours de la partie, créer le message contenant toute les informations des dés, leurs addition ainsi que l'id du lancer
     } else {
       this.id+=1;
       var message = {
@@ -316,7 +317,7 @@
     this.dernierDe2 = this.de2;
   }
 }
-
+//Modéle de message de l'application
 App.MESSAGE = {
   LANCER : "LANCER",
   VALEUR : "VALEUR"
