@@ -159,6 +159,7 @@
       //Si il sagitd<un lancer normal au cours de la partie, créer le message contenant toute les informations des dés, leurs addition ainsi que l'id du lancer
     } else {
       this.id+=1;
+      //Le message sera reçu par le joueur lanceur et aussi par l'autre joueur afin d'être gérer dans les fonctions de gestions
       var message = {
         pseudonyme : this.pseudonymeJoueur,
         valeur : this.resultat,
