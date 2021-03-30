@@ -75,6 +75,7 @@
   confirmerAuthentification(autresParticipants){
     console.log("Je suis authentifié.");
     console.log("Les autres participants sont " + JSON.stringify(autresParticipants));
+    //Si quelqu'un c'est déjà connecté, ajoute le joueur à la liste des autres participants 
     if(autresParticipants.length > 0){
       this.pseudonymeAutreJoueur = autresParticipants[0];
 
@@ -83,10 +84,12 @@
     }
   }
 
+  //Apprend la connexion d'un nouveau joueur
   apprendreAuthentification(pseudonyme){
     console.log("Nouveau joueur: " + pseudonyme);
     this.pseudonymeAutreJoueur = pseudonyme;
 
+    //Un nouveau joueur c'est authentifié, on peut lancer le premier dé de selection entre les deux joueurs 
     if(!this.partieDemarrer)
         this.afficherSelectionPremierJoueur();
   }
